@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="patientApp">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angular Technical #1 Interview</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body ng-controller="PatientController">
+  <div class="container">
+    <div class="header">Hello, Dr. Noori!</div>
+
+    <div class="search-box">
+      <div class="search-header">
+        <img src="https://img.icons8.com/ios-filled/20/000000/search--v1.png" /> Search your patients
+      </div>
+      <div class="search-tabs">
+        <div class="active">Basic</div>
+        <div>Advanced</div>
+      </div>
+      <form class="search-fields" ng-submit="performSearch()">
+        <div class="form-section">
+          <div class="form-section-title">Patient Info</div>
+          <div class="search-fields">
+            <div class="field-group">
+              <label>First Name</label>
+              <input type="text" ng-model="search.firstName" placeholder="First Name">
+            </div>
+            <div class="field-group">
+              <label>Last Name</label>
+              <input type="text" ng-model="search.lastName" placeholder="Last Name">
+            </div>
+            <div class="field-group">
+              <label>Date of Birth</label>
+              <input type="date" ng-model="search.dob">
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">Appointment Range</div>
+          <div class="search-fields">
+            <div class="field-group">
+              <label>Start Date</label>
+              <input type="date" ng-model="search.appointmentStart">
+            </div>
+            <div class="field-group">
+              <label>End Date</label>
+              <input type="date" ng-model="search.appointmentEnd">
+            </div>
+            <button type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="tabs-switch">
+      <div ng-class="{active: activeTab === 'today'}" ng-click="activeTab = 'today'">Today's patients</div>
+      <div ng-class="{active: activeTab === 'search'}" ng-click="activeTab = 'search'">Search results</div>
+    </div>
+
+    <div ng-if="activeTab === 'today'">
+      <div class="patient-card" ng-repeat="p in patients | filter:isToday">
+        <div class="patient-header">
+          <div class="patient-info">
+            <img ng-src="https://randomuser.me/api/portraits/thumb/{{p.sex === 'Male' ? 'men' : 'women'}}/{{$index + 10}}.jpg" alt="avatar" />
+            {{p.name}}
+          </div>
+          <div>Next Appointment: {{formatNextAppointment(p)}}</div>
+        </div>
+        <div class="info">
+          <div><span class="label">DOB</span> {{p.dob}}</div>
+          <div><span class="label">ID Number</span> {{p.id}}</div>
+          <div><span class="label">Hospital</span> {{p.hospital}}</div>
+          <div><span class="label">Sex</span> {{p.sex}}</div>
+          <div><span class="label">Last 4 Digits of SSN</span> {{p.ssn}}</div>
+          <div><span class="label">Department</span> {{p.department}}</div>
+          <div><span class="label">Residence</span> {{p.residence}}</div>
+          <div><span class="label">Phone</span> {{p.phone}}</div>
+          <div><span class="label">Physician</span> {{p.physician}}</div>
+          <div><span class="label">MRN</span> {{p.mrn}}</div>
+          <div><span class="label">Email</span> {{p.email}}</div>
+          <div><span class="label">Conditions</span> {{p.conditions}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="activeTab === 'search'">
+      <div class="patient-card" ng-repeat="p in filteredResults">
+        <div class="patient-header">
+          <div class="patient-info">
+            <img ng-src="https://randomuser.me/api/portraits/thumb/{{p.sex === 'Male' ? 'men' : 'women'}}/{{$index + 10}}.jpg" alt="avatar" />
+            {{p.name}}
+          </div>
+          <div>Next Appointment: {{formatNextAppointment(p)}}</div>
+        </div>
+        <div class="info">
+          <div><span class="label">DOB</span> {{p.dob}}</div>
+          <div><span class="label">Sex</span> {{p.sex}}</div>
+          <div><span class="label">Residence</span> {{p.residence}}</div>
+          <div><span class="label">MRN</span> {{p.mrn}}</div>
+          <div><span class="label">ID Number</span> {{p.id}}</div>
+          <div><span class="label">Last 4 Digits of SSN</span> {{p.ssn}}</div>
+          <div><span class="label">Phone</span> {{p.phone}}</div>
+          <div><span class="label">Email</span> {{p.email}}</div>
+          <div><span class="label">Hospital</span> {{p.hospital}}</div>
+          <div><span class="label">Department</span> {{p.department}}</div>
+          <div><span class="label">Physician</span> {{p.physician}}</div>
+          <div><span class="label">Conditions</span> {{p.conditions}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f6f1;
+}
+.container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+}
+.search-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+.search-header {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #2f4858;
+}
+.search-header img {
+  margin-right: 0.5rem;
+}
+.search-tabs {
+  display: flex;
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 1rem;
+}
+.search-tabs div {
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+}
+.search-tabs .active {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-bottom: none;
+  font-weight: bold;
+}
+.form-section {
+  margin-bottom: 1.5rem;
+}
+.form-section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.search-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+.field-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #444;
+}
+.field-group input {
+  padding: 0.6rem;
+  width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.search-fields button {
+  align-self: flex-end;
+  padding: 0.6rem 1.5rem;
+  background-color: #629295;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.8rem;
+}
+.tabs-switch {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.tabs-switch div {
+  font-size: 18px;
+  font-weight: bold;
+  color: #629295;
+  cursor: pointer;
+}
+.tabs-switch .active {
+  text-decoration: underline;
+}
+.patient-card {
+  background: white;
+  border: 1px solid #d1dbe5;
+  border-left: 4px solid #629295;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.patient-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.patient-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.15);
+  transform: perspective(100px) rotateX(3deg) rotateY(5deg);
+  transition: transform 0.3s ease;
+}
+.patient-info img:hover {
+  transform: perspective(100px) rotateX(5deg) rotateY(10deg) scale(1.05);
+  box-shadow: 3px 6px 8px rgba(0,0,0,0.25);
+}
+.info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1rem;
+}
+.label::after {
+  margin-right: 0.25rem;
+}
+.label {
+  font-weight: bold;
+  color: #555;
+}
+
+@media screen and (min-width: 600px) {
+  .info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .info {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .search-fields {
+    flex-direction: column;
+  }
+
+  .field-group input,
+  .search-fields button {
+    width: 100%;
+  }
+}
